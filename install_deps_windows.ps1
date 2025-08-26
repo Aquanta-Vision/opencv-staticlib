@@ -54,7 +54,7 @@ function Install-OpenCV {
             -DCMAKE_BUILD_TYPE=Release `
             -DOPENCV_GENERATE_PKGCONFIG=ON `
             -DOPENCV_GENERATE_CONFIG_FILE=ON `
-            -DBUILD_SHARED_LIBS=OFF `
+            -DBUILD_SHARED_LIBS=ON `
             -DBUILD_opencv_flann=ON `
             -DBUILD_opencv_calib3d=ON `
             -DBUILD_opencv_dnn=OFF `
@@ -101,7 +101,7 @@ function Install-OpenCV {
             -DCMAKE_BUILD_TYPE=Release `
             -DOPENCV_GENERATE_PKGCONFIG=ON `
             -DOPENCV_GENERATE_CONFIG_FILE=ON `
-            -DBUILD_SHARED_LIBS=OFF `
+            -DBUILD_SHARED_LIBS=ON `
             -DBUILD_opencv_flann=ON `
             -DBUILD_opencv_calib3d=ON `
             -DBUILD_opencv_dnn=OFF `
@@ -149,7 +149,7 @@ function Install-OpenCV {
 }
 
 # Build for both architectures
-# Install-OpenCV -ARCH "x64"
+Install-OpenCV -ARCH "x64"
 Install-OpenCV -ARCH "ARM64"
 
 # Return to the original directory
