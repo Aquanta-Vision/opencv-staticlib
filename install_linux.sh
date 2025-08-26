@@ -9,8 +9,8 @@ pushd "${SCRIPT_DIR}" > /dev/null
 install_opencv_linux() {
   git clone --depth 1 --branch 4.11.0 https://github.com/opencv/opencv.git
 
-  # ARCHS=("x86_64" "aarch64")
-  ARCHS=("x86_64")
+  ARCHS=("x86_64" "aarch64")
+  # ARCHS=("x86_64")
 
   for ARCH in "${ARCHS[@]}"; do
     rm -rf ./build/Linux/opencv/$ARCH
@@ -26,7 +26,7 @@ install_opencv_linux() {
         -DCMAKE_BUILD_TYPE=Release \
         -DOPENCV_GENERATE_PKGCONFIG=ON \
         -DOPENCV_GENERATE_CONFIG_FILE=ON \
-        -DBUILD_SHARED_LIBS=OFF \
+        -DBUILD_SHARED_LIBS=ON \
         -DBUILD_opencv_flann=ON \
         -DBUILD_opencv_calib3d=ON \
         -DBUILD_opencv_dnn=OFF \
@@ -72,7 +72,7 @@ install_opencv_linux() {
         -B ./build/Linux/opencv/$ARCH \
         -DBUILD_LIST=core,imgproc,features2d,flann,calib3d,videoio,video,highgui \
         -DCMAKE_BUILD_TYPE=Release \
-        -DBUILD_SHARED_LIBS=OFF \
+        -DBUILD_SHARED_LIBS=ON \
         -DBUILD_JPEG=ON \
         -DBUILD_OPENEXR=ON \
         -DBUILD_ZLIB=ON \
