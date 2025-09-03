@@ -35,6 +35,16 @@ set_target_properties(opencv_imgproc PROPERTIES
 list(APPEND _cmake_import_check_targets opencv_imgproc )
 list(APPEND _cmake_import_check_files_for_opencv_imgproc "${_IMPORT_PREFIX}/ARM64/vc17/lib/opencv_imgproc4110.lib" "${_IMPORT_PREFIX}/ARM64/vc17/bin/opencv_imgproc4110.dll" )
 
+# Import target "opencv_photo" for configuration "Release"
+set_property(TARGET opencv_photo APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+set_target_properties(opencv_photo PROPERTIES
+  IMPORTED_IMPLIB_RELEASE "${_IMPORT_PREFIX}/ARM64/vc17/lib/opencv_photo4110.lib"
+  IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/ARM64/vc17/bin/opencv_photo4110.dll"
+  )
+
+list(APPEND _cmake_import_check_targets opencv_photo )
+list(APPEND _cmake_import_check_files_for_opencv_photo "${_IMPORT_PREFIX}/ARM64/vc17/lib/opencv_photo4110.lib" "${_IMPORT_PREFIX}/ARM64/vc17/bin/opencv_photo4110.dll" )
+
 # Import target "opencv_features2d" for configuration "Release"
 set_property(TARGET opencv_features2d APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(opencv_features2d PROPERTIES
