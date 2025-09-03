@@ -22,7 +22,7 @@ install_opencv_linux() {
         -G Ninja \
         -S opencv \
         -B ./build/Linux/opencv/$ARCH \
-        -DBUILD_LIST=core,imgproc,features2d,flann,calib3d,videoio,video,highgui \
+        -DBUILD_LIST=core,imgproc,features2d,photo,flann,calib3d,videoio,video,highgui \
         -DCMAKE_BUILD_TYPE=Release \
         -DOPENCV_GENERATE_PKGCONFIG=ON \
         -DOPENCV_GENERATE_CONFIG_FILE=ON \
@@ -31,7 +31,7 @@ install_opencv_linux() {
         -DBUILD_opencv_calib3d=ON \
         -DBUILD_opencv_dnn=OFF \
         -DBUILD_opencv_features2d=ON \
-        -DBUILD_opencv_photo=OFF \
+        -DBUILD_opencv_photo=ON \
         -DBUILD_opencv_objdetect=OFF \
         -DBUILD_opencv_ml=OFF \
         -DBUILD_opencv_video=ON \
@@ -70,8 +70,19 @@ install_opencv_linux() {
         -G Ninja \
         -S opencv \
         -B ./build/Linux/opencv/$ARCH \
-        -DBUILD_LIST=core,imgproc,features2d,flann,calib3d,videoio,video,highgui \
+        -DBUILD_LIST=core,imgproc,features2d,photo,flann,calib3d,videoio,video,highgui \
         -DCMAKE_BUILD_TYPE=Release \
+        -DBUILD_opencv_flann=ON \
+        -DBUILD_opencv_calib3d=ON \
+        -DBUILD_opencv_dnn=OFF \
+        -DBUILD_opencv_features2d=ON \
+        -DBUILD_opencv_photo=ON \
+        -DBUILD_opencv_objdetect=OFF \
+        -DBUILD_opencv_ml=OFF \
+        -DBUILD_opencv_video=ON \
+        -DBUILD_opencv_videoio=ON \
+        -DBUILD_opencv_highgui=ON \
+        -DBUILD_opencv_gapi=OFF \
         -DBUILD_SHARED_LIBS=ON \
         -DBUILD_JPEG=ON \
         -DBUILD_OPENEXR=ON \

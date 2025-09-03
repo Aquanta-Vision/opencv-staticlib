@@ -1,6 +1,6 @@
 # Package Information for pkg-config
 
-prefix=/home/lmark/.cpm/cache/opencv-staticlib/f46e9f6fa1fe44cf63456dfd64578fdf93a85822/build/Linux/opencv/aarch64/install
+prefix=/home/lmark/git/netxten-aquantavision/scripts/.cpmcache/opencv-staticlib/da4797297bc6833a832762ace744ca9d001ed238/build/Linux/opencv/aarch64/install
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include/opencv4
@@ -8,6 +8,6 @@ includedir=${prefix}/include/opencv4
 Name: OpenCV
 Description: Open Source Computer Vision Library
 Version: 4.11.0
-Libs: -L${exec_prefix}/lib -lopencv_highgui -lopencv_video -lopencv_calib3d -lopencv_features2d -lopencv_flann -lopencv_videoio -lopencv_imgcodecs -lopencv_imgproc -lopencv_core
+Libs: -L${exec_prefix}/lib -lopencv_highgui -lopencv_photo -lopencv_video -lopencv_calib3d -lopencv_features2d -lopencv_flann -lopencv_videoio -lopencv_imgcodecs -lopencv_imgproc -lopencv_core
 Libs.private: -ldl -lm -lpthread -lrt
 Cflags: -I${includedir}

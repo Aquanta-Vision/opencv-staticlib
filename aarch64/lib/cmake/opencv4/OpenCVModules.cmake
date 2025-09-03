@@ -19,7 +19,7 @@ set(CMAKE_IMPORT_FILE_VERSION 1)
 set(_cmake_targets_defined "")
 set(_cmake_targets_not_defined "")
 set(_cmake_expected_targets "")
-foreach(_cmake_expected_target IN ITEMS opencv_core opencv_flann opencv_imgproc opencv_features2d opencv_imgcodecs opencv_videoio opencv_calib3d opencv_highgui opencv_video)
+foreach(_cmake_expected_target IN ITEMS opencv_core opencv_flann opencv_imgproc opencv_photo opencv_features2d opencv_imgcodecs opencv_videoio opencv_calib3d opencv_highgui opencv_video)
   list(APPEND _cmake_expected_targets "${_cmake_expected_target}")
   if(TARGET "${_cmake_expected_target}")
     list(APPEND _cmake_targets_defined "${_cmake_expected_target}")
@@ -70,6 +70,13 @@ add_library(opencv_imgproc SHARED IMPORTED)
 
 set_target_properties(opencv_imgproc PROPERTIES
   INTERFACE_LINK_LIBRARIES "opencv_core;opencv_core"
+)
+
+# Create imported target opencv_photo
+add_library(opencv_photo SHARED IMPORTED)
+
+set_target_properties(opencv_photo PROPERTIES
+  INTERFACE_LINK_LIBRARIES "opencv_core;opencv_imgproc;opencv_core;opencv_imgproc"
 )
 
 # Create imported target opencv_features2d

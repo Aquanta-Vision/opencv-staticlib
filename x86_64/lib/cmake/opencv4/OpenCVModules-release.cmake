@@ -35,6 +35,16 @@ set_target_properties(opencv_imgproc PROPERTIES
 list(APPEND _cmake_import_check_targets opencv_imgproc )
 list(APPEND _cmake_import_check_files_for_opencv_imgproc "${_IMPORT_PREFIX}/lib/libopencv_imgproc.so.4.11.0" )
 
+# Import target "opencv_photo" for configuration "Release"
+set_property(TARGET opencv_photo APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+set_target_properties(opencv_photo PROPERTIES
+  IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/lib/libopencv_photo.so.4.11.0"
+  IMPORTED_SONAME_RELEASE "libopencv_photo.so.411"
+  )
+
+list(APPEND _cmake_import_check_targets opencv_photo )
+list(APPEND _cmake_import_check_files_for_opencv_photo "${_IMPORT_PREFIX}/lib/libopencv_photo.so.4.11.0" )
+
 # Import target "opencv_features2d" for configuration "Release"
 set_property(TARGET opencv_features2d APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(opencv_features2d PROPERTIES
