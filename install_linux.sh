@@ -7,6 +7,9 @@ SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 pushd "${SCRIPT_DIR}" > /dev/null
 
 install_opencv_linux() {
+  # Remove existing opencv directory if it exists
+  rm -rf ./opencv
+
   git clone --depth 1 --branch 4.11.0 https://github.com/opencv/opencv.git
 
   ARCHS=("x86_64" "aarch64")
@@ -16,12 +19,14 @@ install_opencv_linux() {
     rm -rf ./build/Linux/opencv/$ARCH
     rm -rf ./install/Linux/opencv/$ARCH
 
+    # Create build directory
+    mkdir -p ./build/Linux/opencv/$ARCH
+
     # Set the toolchain file for cross-compilation
     if [ "$ARCH" = "aarch64" ]; then
+      pushd ./build/Linux/opencv/$ARCH > /dev/null
       cmake \
         -G Ninja \
-        -S opencv \
-        -B ./build/Linux/opencv/$ARCH \
         -DBUILD_LIST=core,imgproc,features2d,photo,flann,calib3d,videoio,video,highgui \
         -DCMAKE_BUILD_TYPE=Release \
         -DOPENCV_GENERATE_PKGCONFIG=ON \
@@ -63,13 +68,14 @@ install_opencv_linux() {
         -DWITH_FFMPEG=OFF \
         -DWITH_IPP=OFF \
         -DWITH_GTK=ON \
-        -DCMAKE_TOOLCHAIN_FILE=$(pwd)/linux-arm64.cmake
- 
+        -DCMAKE_TOOLCHAIN_FILE=../../../../linux-arm64.cmake \
+        ../../../../opencv
+      popd > /dev/null
+
     elif [ "$ARCH" = "x86_64" ]; then
+      pushd ./build/Linux/opencv/$ARCH > /dev/null
       cmake \
         -G Ninja \
-        -S opencv \
-        -B ./build/Linux/opencv/$ARCH \
         -DBUILD_LIST=core,imgproc,features2d,photo,flann,calib3d,videoio,video,highgui \
         -DCMAKE_BUILD_TYPE=Release \
         -DBUILD_opencv_flann=ON \
@@ -97,13 +103,15 @@ install_opencv_linux() {
         -DWITH_PROTOBUF=OFF \
         -DWITH_ADE=OFF \
         -DWITH_IPP=OFF \
-        -DWITH_GTK=ON
+        -DWITH_GTK=ON \
+        ../../../../opencv
+      popd > /dev/null
 
-    else 
+    else
       return 1
     fi
 
-    cmake --build ./build/Linux/opencv/$ARCH --verbose
+    cmake --build ./build/Linux/opencv/$ARCH
     cmake --install ./build/Linux/opencv/$ARCH --prefix ./$ARCH
   
   done
