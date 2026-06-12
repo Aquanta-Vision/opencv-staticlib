@@ -1,0 +1,5 @@
+Xcode 26.2
+Build version 17C52
+/Applications/Xcode_26.2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk
+26.2
+cmake version 4.3.3
