@@ -55,6 +55,16 @@ set_target_properties(libopenjp2 PROPERTIES
 list(APPEND _cmake_import_check_targets libopenjp2 )
 list(APPEND _cmake_import_check_files_for_libopenjp2 "${_IMPORT_PREFIX}/lib/opencv4/3rdparty/liblibopenjp2.a" )
 
+# Import target "libpng" for configuration "Release"
+set_property(TARGET libpng APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+set_target_properties(libpng PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "C"
+  IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/lib/opencv4/3rdparty/liblibpng.a"
+  )
+
+list(APPEND _cmake_import_check_targets libpng )
+list(APPEND _cmake_import_check_files_for_libpng "${_IMPORT_PREFIX}/lib/opencv4/3rdparty/liblibpng.a" )
+
 # Import target "IlmImf" for configuration "Release"
 set_property(TARGET IlmImf APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(IlmImf PROPERTIES

@@ -7,7 +7,7 @@ if(CMAKE_VERSION VERSION_LESS "3.0.0")
    message(FATAL_ERROR "CMake >= 3.0.0 required")
 endif()
 cmake_policy(PUSH)
-cmake_policy(VERSION 3.0.0...3.29)
+cmake_policy(VERSION 3.0.0...4.2)
 #----------------------------------------------------------------
 # Generated CMake target import file.
 #----------------------------------------------------------------
@@ -19,7 +19,7 @@ set(CMAKE_IMPORT_FILE_VERSION 1)
 set(_cmake_targets_defined "")
 set(_cmake_targets_not_defined "")
 set(_cmake_expected_targets "")
-foreach(_cmake_expected_target IN ITEMS zlib libjpeg-turbo libtiff libwebp libopenjp2 IlmImf ittnotify opencv_core opencv_flann opencv_imgproc opencv_photo opencv_features2d opencv_imgcodecs ocv.3rdparty.avfoundation opencv_videoio opencv_calib3d opencv_highgui opencv_video)
+foreach(_cmake_expected_target IN ITEMS zlib libjpeg-turbo libtiff libwebp libopenjp2 libpng IlmImf ittnotify opencv_core opencv_flann opencv_imgproc opencv_photo opencv_features2d opencv_imgcodecs ocv.3rdparty.avfoundation opencv_videoio opencv_calib3d opencv_highgui opencv_video)
   list(APPEND _cmake_expected_targets "${_cmake_expected_target}")
   if(TARGET "${_cmake_expected_target}")
     list(APPEND _cmake_targets_defined "${_cmake_expected_target}")
@@ -79,6 +79,13 @@ set_target_properties(libopenjp2 PROPERTIES
   INTERFACE_LINK_LIBRARIES "\$<LINK_ONLY:m>"
 )
 
+# Create imported target libpng
+add_library(libpng STATIC IMPORTED)
+
+set_target_properties(libpng PROPERTIES
+  INTERFACE_LINK_LIBRARIES "zlib"
+)
+
 # Create imported target IlmImf
 add_library(IlmImf STATIC IMPORTED)
 
@@ -97,42 +104,42 @@ set_target_properties(ittnotify PROPERTIES
 add_library(opencv_core STATIC IMPORTED)
 
 set_target_properties(opencv_core PROPERTIES
-  INTERFACE_LINK_LIBRARIES "\$<LINK_ONLY:Eigen3::Eigen>;\$<LINK_ONLY:zlib>;-framework OpenCL;/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk/System/Library/Frameworks/Accelerate.framework;\$<LINK_ONLY:-lm>;\$<LINK_ONLY:-ldl>;\$<LINK_ONLY:ittnotify>"
+  INTERFACE_LINK_LIBRARIES "\$<LINK_ONLY:zlib>;-framework OpenCL;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Accelerate.framework;\$<LINK_ONLY:-lm>;\$<LINK_ONLY:-ldl>;\$<LINK_ONLY:ittnotify>"
 )
 
 # Create imported target opencv_flann
 add_library(opencv_flann STATIC IMPORTED)
 
 set_target_properties(opencv_flann PROPERTIES
-  INTERFACE_LINK_LIBRARIES "opencv_core;opencv_core;\$<LINK_ONLY:Eigen3::Eigen>"
+  INTERFACE_LINK_LIBRARIES "opencv_core;opencv_core"
 )
 
 # Create imported target opencv_imgproc
 add_library(opencv_imgproc STATIC IMPORTED)
 
 set_target_properties(opencv_imgproc PROPERTIES
-  INTERFACE_LINK_LIBRARIES "opencv_core;opencv_core;\$<LINK_ONLY:Eigen3::Eigen>"
+  INTERFACE_LINK_LIBRARIES "opencv_core;opencv_core"
 )
 
 # Create imported target opencv_photo
 add_library(opencv_photo STATIC IMPORTED)
 
 set_target_properties(opencv_photo PROPERTIES
-  INTERFACE_LINK_LIBRARIES "opencv_core;opencv_imgproc;opencv_core;opencv_imgproc;\$<LINK_ONLY:Eigen3::Eigen>"
+  INTERFACE_LINK_LIBRARIES "opencv_core;opencv_imgproc;opencv_core;opencv_imgproc"
 )
 
 # Create imported target opencv_features2d
 add_library(opencv_features2d STATIC IMPORTED)
 
 set_target_properties(opencv_features2d PROPERTIES
-  INTERFACE_LINK_LIBRARIES "opencv_core;opencv_flann;opencv_imgproc;opencv_core;opencv_flann;opencv_imgproc;\$<LINK_ONLY:Eigen3::Eigen>"
+  INTERFACE_LINK_LIBRARIES "opencv_core;opencv_flann;opencv_imgproc;opencv_core;opencv_flann;opencv_imgproc"
 )
 
 # Create imported target opencv_imgcodecs
 add_library(opencv_imgcodecs STATIC IMPORTED)
 
 set_target_properties(opencv_imgcodecs PROPERTIES
-  INTERFACE_LINK_LIBRARIES "opencv_core;opencv_imgproc;opencv_core;opencv_imgproc;\$<LINK_ONLY:Eigen3::Eigen>;\$<LINK_ONLY:libjpeg-turbo>;\$<LINK_ONLY:libwebp>;\$<LINK_ONLY:libtiff>;\$<LINK_ONLY:libopenjp2>;\$<LINK_ONLY:IlmImf>;\$<LINK_ONLY:zlib>;-framework AppKit"
+  INTERFACE_LINK_LIBRARIES "opencv_core;opencv_imgproc;opencv_core;opencv_imgproc;\$<LINK_ONLY:libjpeg-turbo>;\$<LINK_ONLY:libwebp>;\$<LINK_ONLY:libpng>;\$<LINK_ONLY:libtiff>;\$<LINK_ONLY:libopenjp2>;\$<LINK_ONLY:IlmImf>;\$<LINK_ONLY:zlib>;-framework AppKit"
 )
 
 # Create imported target ocv.3rdparty.avfoundation
@@ -147,28 +154,28 @@ set_target_properties(ocv.3rdparty.avfoundation PROPERTIES
 add_library(opencv_videoio STATIC IMPORTED)
 
 set_target_properties(opencv_videoio PROPERTIES
-  INTERFACE_LINK_LIBRARIES "opencv_core;opencv_imgproc;opencv_imgcodecs;opencv_core;opencv_imgproc;opencv_imgcodecs;\$<LINK_ONLY:Eigen3::Eigen>;\$<LINK_ONLY:ocv.3rdparty.avfoundation>"
+  INTERFACE_LINK_LIBRARIES "opencv_core;opencv_imgproc;opencv_imgcodecs;opencv_core;opencv_imgproc;opencv_imgcodecs;\$<LINK_ONLY:ocv.3rdparty.avfoundation>"
 )
 
 # Create imported target opencv_calib3d
 add_library(opencv_calib3d STATIC IMPORTED)
 
 set_target_properties(opencv_calib3d PROPERTIES
-  INTERFACE_LINK_LIBRARIES "opencv_core;opencv_flann;opencv_imgproc;opencv_features2d;opencv_core;opencv_flann;opencv_imgproc;opencv_features2d;\$<LINK_ONLY:Eigen3::Eigen>;/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk/System/Library/Frameworks/Accelerate.framework;\$<LINK_ONLY:-lm>;\$<LINK_ONLY:-ldl>"
+  INTERFACE_LINK_LIBRARIES "opencv_core;opencv_flann;opencv_imgproc;opencv_features2d;opencv_core;opencv_flann;opencv_imgproc;opencv_features2d;/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Accelerate.framework;\$<LINK_ONLY:-lm>;\$<LINK_ONLY:-ldl>"
 )
 
 # Create imported target opencv_highgui
 add_library(opencv_highgui STATIC IMPORTED)
 
 set_target_properties(opencv_highgui PROPERTIES
-  INTERFACE_LINK_LIBRARIES "opencv_core;opencv_imgproc;opencv_imgcodecs;opencv_videoio;opencv_core;opencv_imgproc;opencv_imgcodecs;opencv_videoio;\$<LINK_ONLY:Eigen3::Eigen>;\$<LINK_ONLY:zlib>;-framework Cocoa"
+  INTERFACE_LINK_LIBRARIES "opencv_core;opencv_imgproc;opencv_imgcodecs;opencv_videoio;opencv_core;opencv_imgproc;opencv_imgcodecs;opencv_videoio;\$<LINK_ONLY:zlib>;-framework Cocoa"
 )
 
 # Create imported target opencv_video
 add_library(opencv_video STATIC IMPORTED)
 
 set_target_properties(opencv_video PROPERTIES
-  INTERFACE_LINK_LIBRARIES "opencv_core;opencv_flann;opencv_imgproc;opencv_features2d;opencv_calib3d;opencv_core;opencv_flann;opencv_imgproc;opencv_features2d;opencv_calib3d;\$<LINK_ONLY:Eigen3::Eigen>"
+  INTERFACE_LINK_LIBRARIES "opencv_core;opencv_flann;opencv_imgproc;opencv_features2d;opencv_calib3d;opencv_core;opencv_flann;opencv_imgproc;opencv_features2d;opencv_calib3d"
 )
 
 # Load information for each installed configuration.

@@ -48,7 +48,7 @@
 /* #undef HAVE_D3D9 */
 
 /* Eigen Matrix & Linear Algebra Library */
-#define HAVE_EIGEN
+/* #undef HAVE_EIGEN */
 
 /* Geospatial Data Abstraction Library */
 /* #undef HAVE_GDAL */
@@ -107,7 +107,7 @@
 /* #undef HAVE_OPENGL */
 
 /* PNG codec */
-/* #undef HAVE_PNG */
+#define HAVE_PNG
 
 /* PNG codec */
 /* #undef HAVE_SPNG */

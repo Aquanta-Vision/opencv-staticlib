@@ -1,0 +1,4 @@
+# Upstream OpenCV source checkout and build tree created by install_macos.sh
+/opencv/
+/build/
+/install/
